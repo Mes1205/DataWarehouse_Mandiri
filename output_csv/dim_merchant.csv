@@ -1,0 +1,101 @@
+merchant_id;merchant_code;nama_merchant;kategori
+1;MCH-5001;Toko Mandiri 1;Market
+2;MCH-5002;Toko Mandiri 2;Retail
+3;MCH-5003;Toko Mandiri 3;Unknown
+4;MCH-5004;Toko Mandiri 4;Kesehatan
+5;MCH-5005;Toko Mandiri 5;Kesehatan
+6;MCH-5006;Toko Mandiri 6;Kesehatan
+7;MCH-5007;Toko Mandiri 7;Kesehatan
+8;MCH-5008;Toko Mandiri 8;Unknown
+9;MCH-5009;Toko Mandiri 9;Market
+10;MCH-5010;Toko Mandiri 10;Electronics
+11;MCH-5011;Toko Mandiri 11;F&B
+12;MCH-5012;Toko Mandiri 12;F&B
+13;MCH-5013;Toko Mandiri 13;Kesehatan
+14;MCH-5014;Toko Mandiri 14;F&B
+15;MCH-5015;Toko Mandiri 15;Electronics
+16;MCH-5016;Toko Mandiri 16;Market
+17;MCH-5017;Toko Mandiri 17;Electronics
+18;MCH-5018;Toko Mandiri 18;Food & Beverage
+19;MCH-5019;Toko Mandiri 19;Market
+20;MCH-5020;Toko Mandiri 20;Market
+21;MCH-5021;Toko Mandiri 21;Electronics
+22;MCH-5022;Toko Mandiri 22;Market
+23;MCH-5023;Toko Mandiri 23;F&B
+24;MCH-5024;Toko Mandiri 24;Market
+25;MCH-5025;Toko Mandiri 25;F&B
+26;MCH-5026;Toko Mandiri 26;Health
+27;MCH-5027;Toko Mandiri 27;Unknown
+28;MCH-5028;Toko Mandiri 28;Electronics
+29;MCH-5029;Toko Mandiri 29;Electronics
+30;MCH-5030;Toko Mandiri 30;F&B
+31;MCH-5031;Toko Mandiri 31;Market
+32;MCH-5032;Toko Mandiri 32;Electronics
+33;MCH-5033;Toko Mandiri 33;Food & Beverage
+34;MCH-5034;Toko Mandiri 34;Unknown
+35;MCH-5035;Toko Mandiri 35;Unknown
+36;MCH-5036;Toko Mandiri 36;Kesehatan
+37;MCH-5037;Toko Mandiri 37;Retail
+38;MCH-5038;Toko Mandiri 38;Food & Beverage
+39;MCH-5039;Toko Mandiri 39;Electronics
+40;MCH-5040;Toko Mandiri 40;Market
+41;MCH-5041;Toko Mandiri 41;Electronics
+42;MCH-5042;Toko Mandiri 42;Electronics
+43;MCH-5043;Toko Mandiri 43;Electronics
+44;MCH-5044;Toko Mandiri 44;Market
+45;MCH-5045;Toko Mandiri 45;Retail
+46;MCH-5046;Toko Mandiri 46;Market
+47;MCH-5047;Toko Mandiri 47;Market
+48;MCH-5048;Toko Mandiri 48;Market
+49;MCH-5049;Toko Mandiri 49;Retail
+50;MCH-5050;Toko Mandiri 50;F&B
+51;MCH-5051;Toko Mandiri 51;Food & Beverage
+52;MCH-5052;Toko Mandiri 52;Food & Beverage
+53;MCH-5053;Toko Mandiri 53;Retail
+54;MCH-5054;Toko Mandiri 54;Market
+55;MCH-5055;Toko Mandiri 55;Unknown
+56;MCH-5056;Toko Mandiri 56;Food & Beverage
+57;MCH-5057;Toko Mandiri 57;Retail
+58;MCH-5058;Toko Mandiri 58;Market
+59;MCH-5059;Toko Mandiri 59;Kesehatan
+60;MCH-5060;Toko Mandiri 60;Kesehatan
+61;MCH-5061;Toko Mandiri 61;Electronics
+62;MCH-5062;Toko Mandiri 62;Food & Beverage
+63;MCH-5063;Toko Mandiri 63;Market
+64;MCH-5064;Toko Mandiri 64;F&B
+65;MCH-5065;Toko Mandiri 65;Retail
+66;MCH-5066;Toko Mandiri 66;Food & Beverage
+67;MCH-5067;Toko Mandiri 67;Unknown
+68;MCH-5068;Toko Mandiri 68;Health
+69;MCH-5069;Toko Mandiri 69;Retail
+70;MCH-5070;Toko Mandiri 70;Unknown
+71;MCH-5071;Toko Mandiri 71;Unknown
+72;MCH-5072;Toko Mandiri 72;Health
+73;MCH-5073;Toko Mandiri 73;Health
+74;MCH-5074;Toko Mandiri 74;Kesehatan
+75;MCH-5075;Toko Mandiri 75;Electronics
+76;MCH-5076;Toko Mandiri 76;Unknown
+77;MCH-5077;Toko Mandiri 77;Market
+78;MCH-5078;Toko Mandiri 78;Kesehatan
+79;MCH-5079;Toko Mandiri 79;Kesehatan
+80;MCH-5080;Toko Mandiri 80;Electronics
+81;MCH-5081;Toko Mandiri 81;Market
+82;MCH-5082;Toko Mandiri 82;Food & Beverage
+83;MCH-5083;Toko Mandiri 83;Unknown
+84;MCH-5084;Toko Mandiri 84;Health
+85;MCH-5085;Toko Mandiri 85;Retail
+86;MCH-5086;Toko Mandiri 86;Food & Beverage
+87;MCH-5087;Toko Mandiri 87;F&B
+88;MCH-5088;Toko Mandiri 88;Electronics
+89;MCH-5089;Toko Mandiri 89;Retail
+90;MCH-5090;Toko Mandiri 90;Health
+91;MCH-5091;Toko Mandiri 91;Market
+92;MCH-5092;Toko Mandiri 92;Retail
+93;MCH-5093;Toko Mandiri 93;Electronics
+94;MCH-5094;Toko Mandiri 94;Unknown
+95;MCH-5095;Toko Mandiri 95;F&B
+96;MCH-5096;Toko Mandiri 96;Kesehatan
+97;MCH-5097;Toko Mandiri 97;Electronics
+98;MCH-5098;Toko Mandiri 98;Unknown
+99;MCH-5099;Toko Mandiri 99;Unknown
+100;MCH-5100;Toko Mandiri 100;F&B
