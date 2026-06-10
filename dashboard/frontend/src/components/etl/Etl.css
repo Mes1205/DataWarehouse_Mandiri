@@ -1,0 +1,309 @@
+.etl-page {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.etl-controls {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: stretch;
+  gap: 16px;
+  margin-top: 12px;
+}
+
+.etl-mode-options {
+  display: flex;
+  gap: 10px;
+  flex: 1;
+  flex-wrap: wrap;
+}
+
+.etl-mode-option {
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+  flex: 1;
+  min-width: 220px;
+  padding: 12px 14px;
+  border: 1px solid var(--border-color);
+  border-radius: 10px;
+  background: var(--bg-base);
+  cursor: pointer;
+  transition: border-color 0.15s ease, background 0.15s ease;
+}
+
+.etl-mode-option:hover {
+  border-color: var(--accent);
+}
+
+.etl-mode-option-active {
+  border-color: var(--accent);
+  background: var(--accent-soft);
+}
+
+.etl-mode-option input {
+  margin-top: 3px;
+  accent-color: var(--accent);
+}
+
+.etl-mode-label {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.etl-mode-desc {
+  font-size: 11px;
+  color: var(--text-secondary);
+  margin-top: 2px;
+}
+
+.etl-run-area {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  justify-content: center;
+  gap: 10px;
+  min-width: 160px;
+}
+
+.etl-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 12px;
+  border-radius: 999px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.etl-badge-idle {
+  background: var(--bg-panel-hover);
+  color: var(--text-secondary);
+}
+
+.etl-badge-running {
+  background: var(--accent-soft);
+  color: var(--accent);
+}
+
+.etl-badge-success {
+  background: rgba(76, 175, 120, 0.15);
+  color: var(--positive);
+}
+
+.etl-badge-error {
+  background: rgba(229, 83, 75, 0.15);
+  color: var(--negative);
+}
+
+.etl-run-btn {
+  background: var(--accent);
+  color: #061021;
+  border: none;
+  border-radius: 8px;
+  padding: 10px 22px;
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: opacity 0.15s ease, transform 0.1s ease;
+}
+
+.etl-run-btn:hover:not(:disabled) {
+  opacity: 0.9;
+}
+
+.etl-run-btn:active:not(:disabled) {
+  transform: scale(0.98);
+}
+
+.etl-run-btn:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+.etl-message {
+  margin-top: 10px;
+  padding: 8px 12px;
+  border-radius: 8px;
+  background: rgba(229, 83, 75, 0.1);
+  border: 1px solid rgba(229, 83, 75, 0.3);
+  color: var(--negative);
+  font-size: 12px;
+}
+
+.etl-pipeline {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 8px 0 4px;
+}
+
+.etl-pipeline-empty {
+  padding: 24px;
+  text-align: center;
+  color: var(--text-secondary);
+  font-size: 13px;
+  border: 1px dashed var(--border-color);
+  border-radius: 10px;
+}
+
+.etl-pipeline-group-title {
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--text-secondary);
+  margin-bottom: 8px;
+}
+
+.etl-pipeline-group-items {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.etl-step {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 14px;
+  border-radius: 10px;
+  border: 1px solid var(--border-color);
+  background: var(--bg-base);
+  transition: border-color 0.2s ease, background 0.2s ease, box-shadow 0.2s ease;
+}
+
+.etl-step-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 26px;
+  height: 26px;
+  flex-shrink: 0;
+  border-radius: 50%;
+  font-size: 13px;
+  font-weight: 700;
+  background: var(--bg-panel-hover);
+  color: var(--text-secondary);
+}
+
+.etl-step-body {
+  flex: 1;
+  min-width: 0;
+}
+
+.etl-step-label {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.etl-step-desc {
+  font-size: 11px;
+  color: var(--text-secondary);
+  margin-top: 2px;
+  line-height: 1.4;
+}
+
+.etl-step-status {
+  flex-shrink: 0;
+  font-size: 11px;
+  color: var(--text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  white-space: nowrap;
+}
+
+.etl-step-pending {
+  opacity: 0.6;
+}
+
+.etl-step-running {
+  border-color: var(--accent);
+  background: var(--accent-soft);
+  box-shadow: 0 0 0 3px rgba(79, 140, 247, 0.12);
+}
+
+.etl-step-running .etl-step-icon {
+  background: var(--accent);
+  color: #061021;
+  animation: etl-spin 1.2s linear infinite;
+}
+
+.etl-step-running .etl-step-status {
+  color: var(--accent);
+}
+
+.etl-step-success {
+  border-color: var(--positive);
+}
+
+.etl-step-success .etl-step-icon {
+  background: var(--positive);
+  color: #06200f;
+}
+
+.etl-step-success .etl-step-status {
+  color: var(--positive);
+}
+
+.etl-step-error {
+  border-color: var(--negative);
+  background: rgba(229, 83, 75, 0.08);
+}
+
+.etl-step-error .etl-step-icon {
+  background: var(--negative);
+  color: #2a0908;
+}
+
+.etl-step-error .etl-step-status {
+  color: var(--negative);
+}
+
+@keyframes etl-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.etl-log-console {
+  background: #050a14;
+  border: 1px solid var(--border-color);
+  border-radius: 10px;
+  padding: 12px 14px;
+  height: 320px;
+  overflow-y: auto;
+  font-family: "SF Mono", "Fira Code", Menlo, Consolas, monospace;
+  font-size: 12px;
+  line-height: 1.6;
+  color: #c7d2e8;
+}
+
+.etl-log-empty {
+  color: var(--text-secondary);
+  font-family: inherit;
+  font-size: 13px;
+}
+
+.etl-log-line {
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+.etl-log-console::-webkit-scrollbar {
+  width: 8px;
+}
+
+.etl-log-console::-webkit-scrollbar-thumb {
+  background: var(--border-color);
+  border-radius: 4px;
+}

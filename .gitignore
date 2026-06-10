@@ -1,4 +1,34 @@
+# --- Environment & secrets ---
 .env
+.env.*
+!.env.example
+
+# --- Python ---
 __pycache__/
-*.pyc
+*.py[cod]
+*.egg-info/
 .venv_atoti/
+.venv/
+venv/
+
+# --- Atoti ---
+atoti/
+.atoti/
+*.atoti
+
+# --- Node / Frontend (Vite + React) ---
+dashboard/frontend/node_modules/
+dashboard/frontend/dist/
+dashboard/frontend/.vite/
+npm-debug.log*
+
+# --- Output / generated data ---
+output_csv/
+
+# --- Logs ---
+*.log
+
+# --- OS / Editor ---
+.DS_Store
+.vscode/
+.idea/

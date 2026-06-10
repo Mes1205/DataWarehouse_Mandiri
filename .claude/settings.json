@@ -14,7 +14,12 @@
       "Bash(awk -F';' 'NR>1 && $5==\"\"{c++}END{print \"missing merchant_code:\",c}' transaksi_raw.csv)",
       "Bash(python3 -c ' *)",
       "Bash(python3 main.py incremental)",
-      "Bash(DATA_DIR=data/generate2 python3 main.py incremental)"
+      "Bash(DATA_DIR=data/generate2 python3 main.py incremental)",
+      "Bash(python3 -c \"import atoti; print\\(atoti.__version__\\)\")",
+      "Bash(java -version)",
+      "Bash(python3 -m py_compile analytics/cube.py analytics/dashboard.py tools/generate_dirty_data.py tools/export_csv.py etl/common.py etl/dimensi.py etl/fakta.py main.py)",
+      "Bash(xargs rm -rf)",
+      "Bash(python3.11 --version)"
     ]
   }
 }

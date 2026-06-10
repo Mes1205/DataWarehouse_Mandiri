@@ -1,0 +1,63 @@
+:root {
+  --bg-base: #090e1a;
+  --bg-panel: #111a2e;
+  --bg-panel-hover: #16213a;
+  --border-color: #243355;
+  --text-primary: #e7ecf7;
+  --text-secondary: #8694b8;
+  --accent: #4f8cf7;
+  --accent-soft: rgba(79, 140, 247, 0.15);
+  --positive: #4caf78;
+  --negative: #e5534b;
+
+  --chart-1: #4f8cf7;
+  --chart-2: #38bdf8;
+  --chart-3: #34d399;
+  --chart-4: #818cf8;
+  --chart-5: #a78bfa;
+  --chart-6: #22d3ee;
+
+  font-family: "Inter", "Segoe UI", system-ui, -apple-system, sans-serif;
+  color-scheme: dark;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html, body, #root {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  background:
+    radial-gradient(circle at 15% 0%, rgba(79, 140, 247, 0.10) 0%, transparent 45%),
+    radial-gradient(circle at 85% 10%, rgba(56, 189, 248, 0.07) 0%, transparent 40%),
+    var(--bg-base);
+  background-attachment: fixed;
+  color: var(--text-primary);
+  font-size: 14px;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  margin: 0;
+  font-weight: 600;
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: var(--border-color);
+  border-radius: 4px;
+}
+
+a {
+  color: inherit;
+}

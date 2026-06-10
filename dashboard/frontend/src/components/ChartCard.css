@@ -1,0 +1,62 @@
+.chart-card {
+  background: var(--bg-panel);
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  padding: 16px 18px;
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+  box-shadow: 0 8px 24px -16px rgba(0, 0, 0, 0.6);
+  transition: border-color 0.15s ease;
+}
+
+.chart-card:hover {
+  border-color: #314165;
+}
+
+.chart-card-title {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: 4px;
+  padding-left: 10px;
+  border-left: 3px solid var(--accent);
+}
+
+.chart-card-subtitle {
+  font-size: 11px;
+  color: var(--text-secondary);
+  margin-bottom: 12px;
+  padding-left: 13px;
+}
+
+.chart-card-body {
+  flex: 1;
+  min-height: 0;
+}
+
+.chart-empty {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  color: var(--text-secondary);
+  font-size: 12px;
+}
+
+.dashboard-grid {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: 16px;
+}
+
+.span-12 { grid-column: span 12; }
+.span-8 { grid-column: span 8; }
+.span-6 { grid-column: span 6; }
+.span-4 { grid-column: span 4; }
+
+@media (max-width: 1100px) {
+  .span-8, .span-6, .span-4 {
+    grid-column: span 12;
+  }
+}

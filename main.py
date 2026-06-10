@@ -17,11 +17,10 @@
 # dan materialized view butuh tabel fakta sudah terisi.
 
 import sys
-from etl_dimensi import run_dimensi, run_dimensi_incremental
-from etl_fakta import run_fakta, run_fakta_incremental
+from etl.dimensi import run_dimensi, run_dimensi_incremental
+from etl.fakta import run_fakta, run_fakta_incremental, create_materialized_view
 from config import get_engine
 from sqlalchemy import text
-from etl_fakta import create_materialized_view
 
 def truncate_semua_tabel(engine):
     """Kosongkan semua tabel sebelum insert ulang — urutan penting karena FK"""
