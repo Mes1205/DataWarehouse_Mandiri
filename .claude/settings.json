@@ -1,0 +1,20 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(python3 -c \"from config import get_engine; e = get_engine\\(\\); print\\('OK', e\\)\")",
+      "Bash(awk -F';' 'NR>1{print $4}' transaksi_raw.csv)",
+      "Bash(awk -F';' 'NR>1{print $6}' transaksi_raw.csv)",
+      "Bash(awk -F';' 'NR>1{print $5}' nasabah_crm.csv)",
+      "Bash(awk -F';' 'NR>1{print $3}' nasabah_crm.csv)",
+      "Bash(awk -F';' 'NR>1{print $3}' merchant_mms.csv)",
+      "Bash(awk -F';' 'NR>1{print $2}' transaksi_raw.csv)",
+      "Bash(sort -t'-' -k3,3 -k2,2 -k1,1)",
+      "Bash(awk -F';' 'NR>1{print $7}' transaksi_raw.csv)",
+      "Bash(awk -F';' 'NR>1 && $3==\"\"{c++}END{print \"missing nasabah_code:\",c}' transaksi_raw.csv)",
+      "Bash(awk -F';' 'NR>1 && $5==\"\"{c++}END{print \"missing merchant_code:\",c}' transaksi_raw.csv)",
+      "Bash(python3 -c ' *)",
+      "Bash(python3 main.py incremental)",
+      "Bash(DATA_DIR=data/generate2 python3 main.py incremental)"
+    ]
+  }
+}
