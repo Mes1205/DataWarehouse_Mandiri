@@ -1,0 +1,203 @@
+============================================================
+HASIL PENGUJIAN LOAD — FULL LOAD + 20x INCREMENTAL LOAD
+DataWarehouse Mandiri
+============================================================
+
+Tabel Ringkas (checkpoint utama)
+------------------------------------------------------------
+Stage       dim_waktu  dim_nasabah  dim_merchant  dim_channel  dim_wilayah  fact_transaksi
+Full Load   10957      1001         101           6            17           4843
+Batch 1     10957      2001         201           6            17           14182
+Batch 5     10957      6001         601           6            17           51443
+Batch 10    10957      11001        1101          6            17           97912
+Batch 20    10957      21001        2101          6            17           190940
+
+Tabel Lengkap (semua 20 batch)
+------------------------------------------------------------
+Stage       dim_nasabah  dim_merchant  fact_transaksi  Delta_fact
+Full Load   1001         101           4843            -
+Batch 01    2001         201           14182           +9339
+Batch 02    3001         301           23495           +9313
+Batch 03    4001         401           32840           +9345
+Batch 04    5001         501           42166           +9326
+Batch 05    6001         601           51443           +9277
+Batch 06    7001         701           60782           +9339
+Batch 07    8001         801           70053           +9271
+Batch 08    9001         901           79338           +9285
+Batch 09    10001        1001          88612           +9274
+Batch 10    11001        1101          97912           +9300
+Batch 11    12001        1201          107232          +9320
+Batch 12    13001        1301          116504          +9272
+Batch 13    14001        1401          125821          +9317
+Batch 14    15001        1501          135150          +9329
+Batch 15    16001        1601          144470          +9320
+Batch 16    17001        1701          153790          +9320
+Batch 17    18001        1801          163112          +9322
+Batch 18    19001        1901          172365          +9253
+Batch 19    20001        2001          181621          +9256
+Batch 20    21001        2101          190940          +9319
+
+Catatan:
+- dim_waktu (10957), dim_channel (6), dim_wilayah (17) tidak pernah berubah
+  di seluruh proses -> sesuai desain (master data tertutup).
+- dim_nasabah & dim_merchant naik tepat +1000 / +100 per batch
+  -> sesuai jumlah baris baru di tiap file generator.
+- fact_transaksi naik ~9250-9345 per batch (bukan 10000 persis)
+  -> selisihnya adalah baris yang DIBUANG oleh proses cleansing ETL
+     (duplikat trx_id, nominal negatif, tanggal tidak valid).
+- Hasil akhir setelah Batch 20: 190940 transaksi, 21001 nasabah,
+  2101 merchant -> kondisi database saat ini, siap untuk
+  validasi OLAP cube & dashboard.
+
+============================================================
+RAW LOG (output asli per tahap)
+============================================================
+
+=== FULL LOAD ===
+dim_waktu: 10957
+dim_nasabah: 1001
+dim_merchant: 101
+dim_channel: 6
+dim_wilayah: 17
+fact_transaksi: 4843
+=== BATCH 01 ===
+dim_waktu: 10957
+dim_nasabah: 2001
+dim_merchant: 201
+dim_channel: 6
+dim_wilayah: 17
+fact_transaksi: 14182
+=== BATCH 02 ===
+dim_waktu: 10957
+dim_nasabah: 3001
+dim_merchant: 301
+dim_channel: 6
+dim_wilayah: 17
+fact_transaksi: 23495
+=== BATCH 03 ===
+dim_waktu: 10957
+dim_nasabah: 4001
+dim_merchant: 401
+dim_channel: 6
+dim_wilayah: 17
+fact_transaksi: 32840
+=== BATCH 04 ===
+dim_waktu: 10957
+dim_nasabah: 5001
+dim_merchant: 501
+dim_channel: 6
+dim_wilayah: 17
+fact_transaksi: 42166
+=== BATCH 05 ===
+dim_waktu: 10957
+dim_nasabah: 6001
+dim_merchant: 601
+dim_channel: 6
+dim_wilayah: 17
+fact_transaksi: 51443
+=== BATCH 06 ===
+dim_waktu: 10957
+dim_nasabah: 7001
+dim_merchant: 701
+dim_channel: 6
+dim_wilayah: 17
+fact_transaksi: 60782
+=== BATCH 07 ===
+dim_waktu: 10957
+dim_nasabah: 8001
+dim_merchant: 801
+dim_channel: 6
+dim_wilayah: 17
+fact_transaksi: 70053
+=== BATCH 08 ===
+dim_waktu: 10957
+dim_nasabah: 9001
+dim_merchant: 901
+dim_channel: 6
+dim_wilayah: 17
+fact_transaksi: 79338
+=== BATCH 09 ===
+dim_waktu: 10957
+dim_nasabah: 10001
+dim_merchant: 1001
+dim_channel: 6
+dim_wilayah: 17
+fact_transaksi: 88612
+=== BATCH 10 ===
+dim_waktu: 10957
+dim_nasabah: 11001
+dim_merchant: 1101
+dim_channel: 6
+dim_wilayah: 17
+fact_transaksi: 97912
+=== BATCH 11 ===
+dim_waktu: 10957
+dim_nasabah: 12001
+dim_merchant: 1201
+dim_channel: 6
+dim_wilayah: 17
+fact_transaksi: 107232
+=== BATCH 12 ===
+dim_waktu: 10957
+dim_nasabah: 13001
+dim_merchant: 1301
+dim_channel: 6
+dim_wilayah: 17
+fact_transaksi: 116504
+=== BATCH 13 ===
+dim_waktu: 10957
+dim_nasabah: 14001
+dim_merchant: 1401
+dim_channel: 6
+dim_wilayah: 17
+fact_transaksi: 125821
+=== BATCH 14 ===
+dim_waktu: 10957
+dim_nasabah: 15001
+dim_merchant: 1501
+dim_channel: 6
+dim_wilayah: 17
+fact_transaksi: 135150
+=== BATCH 15 ===
+dim_waktu: 10957
+dim_nasabah: 16001
+dim_merchant: 1601
+dim_channel: 6
+dim_wilayah: 17
+fact_transaksi: 144470
+=== BATCH 16 ===
+dim_waktu: 10957
+dim_nasabah: 17001
+dim_merchant: 1701
+dim_channel: 6
+dim_wilayah: 17
+fact_transaksi: 153790
+=== BATCH 17 ===
+dim_waktu: 10957
+dim_nasabah: 18001
+dim_merchant: 1801
+dim_channel: 6
+dim_wilayah: 17
+fact_transaksi: 163112
+=== BATCH 18 ===
+dim_waktu: 10957
+dim_nasabah: 19001
+dim_merchant: 1901
+dim_channel: 6
+dim_wilayah: 17
+fact_transaksi: 172365
+=== BATCH 19 ===
+dim_waktu: 10957
+dim_nasabah: 20001
+dim_merchant: 2001
+dim_channel: 6
+dim_wilayah: 17
+fact_transaksi: 181621
+=== BATCH 20 ===
+dim_waktu: 10957
+dim_nasabah: 21001
+dim_merchant: 2101
+dim_channel: 6
+dim_wilayah: 17
+fact_transaksi: 190940
+=== ALL DONE ===

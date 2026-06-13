@@ -8,6 +8,8 @@
 import os
 import sys
 
+import pandas as pd
+
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))))
 
 from analytics.cube import build_cube
@@ -56,12 +58,14 @@ def build_filter(cube, params: dict):
     Mendukung slice (1 nilai) & dice (banyak nilai) karena semua pakai isin()."""
     l = cube.levels
     cond = None
+    included_hierarchies = set()
 
     def add(level_key, values):
         nonlocal cond
         if values:
             c = l[level_key].isin(*values)
             cond = c if cond is None else cond & c
+            included_hierarchies.add(level_key[0])
 
     add(("Waktu", "tahun"), params.get("tahun"))
     add(("Waktu", "quarter"), params.get("quarter"))
@@ -84,6 +88,10 @@ def build_filter(cube, params: dict):
     # Secara default, baris "Unknown" (placeholder untuk dimensi yang tidak
     # tercatat di sumber data) disembunyikan kecuali include_unknown=True.
     if not params.get("include_unknown"):
+        # Lewati exclusion filter untuk hierarchy yang sudah punya inclusion
+        # filter (isin) dari user -- atoti tidak bisa menggabungkan inclusion
+        # & exclusion filter pada hierarchy yang sama ("Only exclusion filters
+        # can be combined"), dan nilai pilihan user pasti bukan "Unknown".
         for level_key in (
             ("Waktu", "quarter"), ("Waktu", "bulan"), ("Hari Transaksi", "hari"),
             ("Nasabah", "segmen_nasabah"), ("Nasabah", "jenis_kelamin"), ("Nasabah", "nama_lengkap"),
@@ -91,18 +99,27 @@ def build_filter(cube, params: dict):
             ("Wilayah", "region"), ("Wilayah", "provinsi"), ("Wilayah", "kota"),
             ("Merchant", "kategori"), ("Merchant", "nama_merchant"),
         ):
+            if level_key[0] in included_hierarchies:
+                continue
             c = l[level_key] != "Unknown"
             cond = c if cond is None else cond & c
-        c = l["Nasabah", "jenis_kelamin"] != "U"
-        cond = c if cond is None else cond & c
-        c = l["Waktu", "tahun"] != 0
-        cond = c if cond is None else cond & c
+        if "Nasabah" not in included_hierarchies:
+            c = l["Nasabah", "jenis_kelamin"] != "U"
+            cond = c if cond is None else cond & c
+        if "Waktu" not in included_hierarchies:
+            c = l["Waktu", "tahun"] != 0
+            cond = c if cond is None else cond & c
 
     return cond
 
 
 def _df(cube, levels, measures, filter_cond):
-    """Helper: jalankan cube.query dan return DataFrame hasil (mode='raw')."""
+    """Helper: jalankan cube.query dan return DataFrame hasil (mode='raw').
+
+    Kalau kombinasi filter tidak match baris apapun, atoti raw mode
+    mengembalikan DataFrame tanpa kolom level (hanya kolom measure) --
+    tambahkan kembali kolom level (kosong) supaya kode pemanggil yang
+    mengakses df[nama_level] tidak KeyError."""
     l = cube.levels
     level_objs = [l[k] for k in levels]
     measure_objs = [cube.measures[m] for m in measures]
@@ -110,8 +127,18 @@ def _df(cube, levels, measures, filter_cond):
     if filter_cond is not None:
         kwargs["filter"] = filter_cond
     if level_objs:
-        return cube.query(*measure_objs, levels=level_objs, **kwargs)
+        df = cube.query(*measure_objs, levels=level_objs, **kwargs)
+        for _, level_name in levels:
+            if level_name not in df.columns:
+                df[level_name] = pd.Series(dtype="object")
+        return df
     return cube.query(*measure_objs, **kwargs)
+
+
+def _num(val, cast=float):
+    """Konversi nilai measure atoti ke tipe Python, treat NA/NaN sebagai 0
+    (terjadi saat filter tidak match baris apapun)."""
+    return cast(0) if pd.isna(val) else cast(val)
 
 
 # ---------------------------------------------------------------------------
@@ -175,10 +202,10 @@ def get_kpi(params: dict):
     ], cond)
     row = df.iloc[0]
     current = {
-        "total_volume_transaksi": float(row["Total Volume Transaksi"]),
-        "total_frekuensi_transaksi": int(row["Jumlah Transaksi"]),
-        "total_revenue_transaksi": float(row["Total Biaya Admin"]),
-        "avg_nominal_transaksi": float(row["Rata-rata Nominal Transaksi"]),
+        "total_volume_transaksi": _num(row["Total Volume Transaksi"]),
+        "total_frekuensi_transaksi": _num(row["Jumlah Transaksi"], cast=int),
+        "total_revenue_transaksi": _num(row["Total Biaya Admin"]),
+        "avg_nominal_transaksi": _num(row["Rata-rata Nominal Transaksi"]),
     }
 
     # Trend (MoM) hanya dihitung kalau filter tahun+bulan persis 1 nilai
@@ -209,10 +236,10 @@ def get_kpi(params: dict):
             return round((curr_val - prev_val) / prev_val * 100, 2)
 
         trend = {
-            "total_volume_transaksi": pct(current["total_volume_transaksi"], float(prev_row["Total Volume Transaksi"])),
-            "total_frekuensi_transaksi": pct(current["total_frekuensi_transaksi"], float(prev_row["Jumlah Transaksi"])),
-            "total_revenue_transaksi": pct(current["total_revenue_transaksi"], float(prev_row["Total Biaya Admin"])),
-            "avg_nominal_transaksi": pct(current["avg_nominal_transaksi"], float(prev_row["Rata-rata Nominal Transaksi"])),
+            "total_volume_transaksi": pct(current["total_volume_transaksi"], _num(prev_row["Total Volume Transaksi"])),
+            "total_frekuensi_transaksi": pct(current["total_frekuensi_transaksi"], _num(prev_row["Jumlah Transaksi"])),
+            "total_revenue_transaksi": pct(current["total_revenue_transaksi"], _num(prev_row["Total Biaya Admin"])),
+            "avg_nominal_transaksi": pct(current["avg_nominal_transaksi"], _num(prev_row["Rata-rata Nominal Transaksi"])),
         }
 
     return {**current, "trend": trend}
