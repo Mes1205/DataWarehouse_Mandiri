@@ -1,0 +1,6 @@
+rank,layer,growth_rate_ms_per_1k,r2,is_bottleneck
+1,Cube Construction,25.7718,0.9818,True
+2,ETL Pipeline,10.5065,0.0647,False
+3,OLAP Query (pivot),0.1301,0.9967,False
+4,OLAP Query (simple),0.0716,0.9945,False
+5,OLAP Query (rollup),0.0527,0.9986,False

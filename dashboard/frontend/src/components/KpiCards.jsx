@@ -27,7 +27,7 @@ export default function KpiCards() {
       <KpiCard
         label="Total Revenue Transaksi"
         value={data?.total_revenue_transaksi}
-        format="currency-compact-million"
+        format="currency-compact-billion"
         expandable
         trend={trend?.total_revenue_transaksi}
         loading={loading}
